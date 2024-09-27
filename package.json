@@ -1,6 +1,6 @@
 {
   "name": "state-engine-cli-kit",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "StateEngine CLI Kit is a powerful command-line tool for configuring state management in any frontend library or framework configured with TypeScript, reducing repetitive tasks.",
   "main": "index.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "seck": "dist/index.js"
   },
   "scripts": {
-    "build": "npx tsc",
+    "build": "node api.js && npx tsc",
     "watch": "npx tsc --watch",
     "clean": "rm -rf dist",
     "relink": "npm unlink -g && npm link",

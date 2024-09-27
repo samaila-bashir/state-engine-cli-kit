@@ -1,3 +1,18 @@
+# Table of Contents
+
+1. [Introduction](#stateengine-cli-kit)
+   - [Suitable for Frontend Projects Configured with TypeScript](#suitable-for-frontend-projects-configured-with-typescript) -[What's Included](#whats-included)
+2. [Features in Version 1.0.0](#features-in-version-100)
+3. [Commands](#commands)
+4. [Example Usage](#example-usage)
+   - [Using NPX](#alternatively-use-npx-directly)
+5. [Setting Up the Redux Provider](#setting-up-the-redux-provider)
+6. [Viewing the Sample Todo App](#viewing-the-sample-todo-app)
+7. [Generate Command](#generate-command)
+8. [Configuration File](#configuration-file)
+9. [Supported Frameworks and Libraries](#supported-frameworks-and-libraries)
+10. [Contributions](#contributions)
+
 # StateEngine CLI Kit
 
 StateEngine CLI Kit is a powerful and easy-to-use command-line tool that simplifies setting up your choice of state management library in any frontend framework or library, such as React (e.g. Redux [Saga or Thunk], React Query, Zustand), Vue (Pinia or Vuex), Angular (NgRx and Akita), Svelte, and others. This CLI kit is especially designed for any frontend project configured with TypeScript, helping you to set up a standard project folder structure for your state management. It provides state management setup with configuration files and folders to quickly get started with managing state in your frontend project.
@@ -6,9 +21,18 @@ StateEngine CLI Kit is a powerful and easy-to-use command-line tool that simplif
 >
 > — [Samaila Chatto Bashir](https://samailabashir.com)
 
-🔴 _Attention: This documentation is focused on state management setup on React projects configured with TypeScript, and the state management tool currently available is Redux with the option to use `Redux Saga` or `Redux Thunk`. I will be updating the status table below on the state management options added to the project._
+## Suitable for Frontend Projects Configured with TypeScript
 
-#### [View Status Table](#stateengine-cli-kit-framework-and-library-support)
+StateEngine CLI Kit is built with TypeScript in mind. It generates TypeScript files and sets up type-safe configurations. This ensures your your choice of state management library store benefits from strong typing and helps catch potential bugs during development.
+
+### What's Included:
+
+- **Redux Store**: The `store/index.ts` file provides a ready-to-use Redux store configuration.
+- **Slices**: Automatically generated slices for state management.
+- **Sagas or Thunks**: Depending on your choice, the CLI will generate a corresponding saga or thunk for asynchronous logic.
+- **Sample Component**: A basic Todo app component that integrates with Redux and includes example CRUD functionality.
+
+🔴 _Attention: This documentation is focused on state management setup on React projects configured with TypeScript, and the state management tool currently available is Redux with the option to use `Redux Saga` or `Redux Thunk`. I will be updating the [status table](#stateengine-cli-kit-framework-and-library-support) below on the state management options added to the project._
 
 ## Features in Version 1.0.0
 
@@ -81,17 +105,6 @@ This command:
 - Removes the `src/todos` directory that contains the sample Todo component.
 - Uninstalls the related Redux packages from the project.
 
-## Suitable for Frontend Projects with TypeScript
-
-StateEngine CLI Kit is built with TypeScript in mind. It generates TypeScript files and sets up type-safe configurations. This ensures your your choice of state management library store benefits from strong typing and helps catch potential bugs during development.
-
-### What's Included:
-
-- **Redux Store**: The `store/index.ts` file provides a ready-to-use Redux store configuration.
-- **Slices**: Automatically generated slices for state management.
-- **Sagas or Thunks**: Depending on your choice, the CLI will generate a corresponding saga or thunk for asynchronous logic.
-- **Sample Component**: A basic Todo app component that integrates with Redux and includes example CRUD functionality.
-
 ## Example Usage
 
 #### Create a React app with TypeScript template
@@ -110,37 +123,55 @@ Install the StateEngine CLI Kit package using npm:
 npm install stateengine-cli-kit
 ```
 
-#### Add SECK to your script
-
-Since you will be running CLI commands frequently, you can add `seck` to your scripts in `package.json`. Alternatively, you can run the CLI directly using:
+Alternatively, you can use npx to run the CLI without installing it globally:
 
 ```bash
-npx seck init
+npx stateengine-cli-kit <command>
 ```
 
-#### Alternatively, You Can Initialize Redux Store with Saga:
+For example:
 
 ```bash
-seck init --saga
+npx stateengine-cli-kit init
 ```
 
-#### Initialize Redux Store with Thunk:
+#### Add SECK to your scripts
+
+After installing the package, it's recommended to add SECK commands to your `package.json` scripts for easier access. Here's how you can do it:
+
+1. Open your `package.json` file.
+2. In the "scripts" section, add the following entries:
+
+```json
+"scripts": {
+  // ... other scripts ...
+  "seck:init": "seck init",
+  "seck:init:saga": "seck init --saga",
+  "seck:init:thunk": "seck init --thunk",
+  "seck:generate": "seck generate",
+  "seck:reset": "seck reset"
+}
+```
+
+Now you can run the commands using npm or yarn:
 
 ```bash
-seck init --thunk
+npm run seck:init
+# or
+yarn seck:init
 ```
 
-#### Generate a New Model (e.g., Users):
+#### Alternatively, use npx directly:
+
+If you prefer not to modify your `package.json`, you can always run SECK commands directly using npx:
 
 ```bash
-seck generate users
+npx stateengine-cli-kit init
+npx stateengine-cli-kit init --saga
+npx stateengine-cli-kit init --thunk
 ```
 
-#### Reset the Redux Store:
-
-```bash
-seck reset
-```
+This method works without adding scripts, but requires typing `npx` before each command.
 
 ## Setting Up the Redux Provider
 
@@ -290,7 +321,7 @@ seck generate <model>
 
   This will generate a full CRUD saga for the users model.
 
-### Configuration
+## Configuration File
 
 When you run the command for the first time, if no configuration file (`seckconfig.json`) is found, the CLI will prompt you to select the framework (e.g., React) and the state management library (e.g., Redux with Saga or Thunk). It will also ask you to specify a directory for the generated files (optional).
 
@@ -303,7 +334,7 @@ The configuration is saved in `seckconfig.json` so that you won’t need to prov
 
 This CLI tool is designed to help streamline Redux state management setup by automatically generating the necessary boilerplate for your models with simple commands.
 
-# StateEngine CLI Kit: Framework and Library Support
+# Supported Frameworks and Libraries
 
 ### React JS
 
